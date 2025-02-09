@@ -17,7 +17,12 @@
         <item name="cornerSizeTopLeft">30dp</item>
         <item name="cornerSizeBottomLeft">0dp</item>
         <item name="cornerSizeBottomRight">0dp</item>
-    </style>/
-    
-    
+    </style>
+    <style name="Theme.App.SplashScreen" parent="Theme.SplashScreen">
+    <item name="windowSplashScreenBackground">@color/main</item>
+         <item name="windowSplashScreenAnimatedIcon">@drawable/new_heart</item>
+        <item name="postSplashScreenTheme">@style/Base.Theme.Caredio</item>
+  </style>
+
+
 </resources>

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "148746717675",
+    "project_id": "kotlincaredio",
+    "storage_bucket": "kotlincaredio.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:148746717675:android:8a7409eb0528874e2ef1ae",
+        "android_client_info": {
+          "package_name": "com.example.caredio"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSsMsbJgeai7DMMKYw46WfNpkLalrykeM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
