@@ -49,5 +49,6 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:33.9.0"))
     implementation ("com.google.firebase:firebase-auth:22.1.2")
     implementation("androidx.core:core-splashscreen:1.0.0")
+    implementation ("com.google.firebase:firebase-firestore:24.10.0")
 
 }

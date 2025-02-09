@@ -2,6 +2,7 @@ package com.example.caredio
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Window
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -20,6 +21,9 @@ class MainActivity : AppCompatActivity() {
         //    installSplashScreen()
         setContentView(R.layout.activity_main)
         // Find the ImageView elements
+        // Change Status Bar Color Programmatically
+        val window: Window = window
+        window.statusBarColor = resources.getColor(R.color.main)
         val doctorImageView: ImageView = findViewById(R.id.imageView2)
         val patientImageView: ImageView = findViewById(R.id.imageView4)
 
@@ -31,8 +35,8 @@ class MainActivity : AppCompatActivity() {
 
         // Set click listener for Patient image
         patientImageView.setOnClickListener {
-            //val intent = Intent(this, Login2Activity::class.java)
-
+            val intent = Intent(this, LoginPAT::class.java)
+            startActivity(intent)
         }
     }
 }

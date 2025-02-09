@@ -2,6 +2,7 @@ package com.example.caredio
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Window
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -17,6 +18,10 @@ class LoginDOC : AppCompatActivity() {
         //Thread.sleep(3000)
         //    installSplashScreen()
         setContentView(R.layout.activity_logindoc)
+
+        // Change Status Bar Color Programmatically
+        val window: Window = window
+        window.statusBarColor = resources.getColor(R.color.main)
 
 
         // Initialize Firebase Authentication
@@ -45,7 +50,7 @@ class LoginDOC : AppCompatActivity() {
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
                         Toast.makeText(this, "Login Successful!", Toast.LENGTH_SHORT).show()
-                        startActivity(Intent(this, HomeActivity::class.java))
+                        startActivity(Intent(this, HomeDoc::class.java))
                         finish()
                     } else {
                         Toast.makeText(this, "Login Failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
