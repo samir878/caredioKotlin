@@ -19,24 +19,24 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         //Thread.sleep(3000)
         //    installSplashScreen()
-        setContentView(R.layout.activity_main)
-        // Find the ImageView elements
+        setContentView(R.layout.activity_home_patient)
+         //Find the ImageView elements
         // Change Status Bar Color Programmatically
         val window: Window = window
-        window.statusBarColor = resources.getColor(R.color.main)
-        val doctorImageView: ImageView = findViewById(R.id.imageView2)
-        val patientImageView: ImageView = findViewById(R.id.imageView4)
-
-        // Set click listener for Doctor image
-        doctorImageView.setOnClickListener {
-            val intent = Intent(this, LoginDOC::class.java)
-            startActivity(intent)
-        }
-
-        // Set click listener for Patient image
-        patientImageView.setOnClickListener {
-            val intent = Intent(this, LoginPAT::class.java)
-            startActivity(intent)
-        }
+        window.statusBarColor = resources.getColor(R.color.white)
+//        val doctorImageView: ImageView = findViewById(R.id.imageView2)
+//        val patientImageView: ImageView = findViewById(R.id.imageView4)
+//
+//        // Set click listener for Doctor image
+//        doctorImageView.setOnClickListener {
+//            val intent = Intent(this, LoginDOC::class.java)
+//            startActivity(intent)
+//        }
+//
+//        // Set click listener for Patient image
+//        patientImageView.setOnClickListener {
+//            val intent = Intent(this, LoginPAT::class.java)
+//            startActivity(intent)
+//        }
     }
 }
