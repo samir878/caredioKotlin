@@ -51,5 +51,6 @@ dependencies {
     implementation ("com.google.firebase:firebase-auth:22.1.2")
     implementation("androidx.core:core-splashscreen:1.0.0")
     implementation ("com.google.firebase:firebase-firestore:24.10.0")
+    implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")
 
 }
