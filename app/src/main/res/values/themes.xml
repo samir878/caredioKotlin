@@ -25,4 +25,18 @@
   </style>
 
 
+    <style name="BottomRoundedCard" parent="Widget.MaterialComponents.CardView">
+        <item name="shapeAppearance">
+            @style/ShapeAppearance.BottomRounded
+        </item>
+    </style>
+
+    <style name="ShapeAppearance.BottomRounded" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">0dp</item>
+        <item name="cornerSizeTopRight">0dp</item>
+        <item name="cornerSizeBottomLeft">16dp</item>
+        <item name="cornerSizeBottomRight">16dp</item>
+    </style>
 </resources>
+

@@ -78,7 +78,7 @@ class LoginPAT : AppCompatActivity() {
                     val role = document.getString("role")
                     if (role == "patient") {
                         Toast.makeText(this, "Login Successful!", Toast.LENGTH_SHORT).show()
-                        startActivity(Intent(this, HomePatient::class.java))
+                        startActivity(Intent(this, DiagoBloodSu::class.java))
                         finish()
                     } else {
                         Toast.makeText(this, "User is not a patient!", Toast.LENGTH_SHORT).show()

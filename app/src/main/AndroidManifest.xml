@@ -13,6 +13,18 @@
         android:theme="@style/Theme.Caredio"
         tools:targetApi="31">
         <activity
+            android:name=".testt"
+            android:exported="false" />
+        <activity
+            android:name=".test"
+            android:exported="false" />
+        <activity
+            android:name=".DiagoBloodSu"
+            android:exported="false" />
+        <activity
+            android:name=".DiagnoBloodS"
+            android:exported="false" />
+        <activity
             android:name=".HomeDoc"
             android:exported="false" />
         <activity

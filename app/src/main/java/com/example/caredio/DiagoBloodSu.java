@@ -1,64 +1,124 @@
 package com.example.caredio;
-
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.cardview.widget.CardView;
 
-import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
-import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.utils.ColorTemplate;
-
-import java.util.ArrayList;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 public class DiagoBloodSu extends AppCompatActivity {
 
-    ArrayList<BarEntry> barArrayList;
+    private FirebaseFirestore db;
+    private LinearLayout historyContainer;
+    private static final String TAG = "DiagoBloodSu";
+    private String patientId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_diago_blood_su);
-        Log.d("BarChart", "onCreate() called");
 
-        getData();  // Calling the method to get data
+        historyContainer = findViewById(R.id.historyContainer);
+        db = FirebaseFirestore.getInstance();
 
-        // Log to confirm that getData() has been called
-        Log.d("BarChart", "Data populated: " + barArrayList.toString());
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+        // Get the current logged-in user ID
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            patientId = user.getUid(); // The logged-in user's ID becomes the patient ID
+        }
 
-        BarChart barChart = findViewById(R.id.barChart);
-        BarDataSet barDataSet = new BarDataSet(barArrayList, "Tuto");
-        BarData barData = new BarData(barDataSet);
-
-        // Set data to the chart
-        barChart.setData(barData);
-        barDataSet.setColor(ColorTemplate.COLOR_NONE);
-        barDataSet.setValueTextSize(16f);
-        barChart.getDescription().setEnabled(true);
-
-        // Ensure the chart is refreshed
-        barChart.invalidate();
+        // Fetch blood pressure data based on the patient ID
+        fetchBloodPressureData();
     }
 
-    private void getData() {
-        barArrayList = new ArrayList<>();
-        barArrayList.add(new BarEntry(1f, 10));
-        barArrayList.add(new BarEntry(2f, 15));
-        barArrayList.add(new BarEntry(3f, 20));
+    private void fetchBloodPressureData() {
+        if (patientId == null) {
+            Toast.makeText(this, "No user is logged in!", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
-        Log.d("BarChart", "Data: " + barArrayList.toString());
+        // Fetch blood pressure records for the patient
+        db.collection("Patients")
+                .document(patientId)
+                .collection("Blood")
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    if (queryDocumentSnapshots.isEmpty()) {
+                        Toast.makeText(this, "No blood pressure records found!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
 
+                    // Loop through each blood pressure record
+                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                        Long systolicValue = document.getLong("systolic");
+                        Long diastolicValue = document.getLong("diastolic");
+
+                        if (systolicValue != null && diastolicValue != null) {
+                            int systolic = systolicValue.intValue();
+                            int diastolic = diastolicValue.intValue();
+                            generateHistoryCard(systolic, diastolic);
+                        } else {
+                            Log.e(TAG, "Invalid data format in document: " + document.getId());
+                        }
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(this, "Failed to connect to the database!", Toast.LENGTH_SHORT).show();
+                    Log.e(TAG, "Error fetching data", e);
+                });
+    }
+
+    private void generateHistoryCard(int systolic, int diastolic) {
+        CardView cardView = new CardView(this);
+        LinearLayout.LayoutParams cardParams = new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+        );
+        cardParams.setMargins(0, 8, 0, 8);
+        cardView.setLayoutParams(cardParams);
+        cardView.setRadius(16);
+        cardView.setCardElevation(6);
+        cardView.setPadding(24, 16, 24, 16);
+        cardView.setCardBackgroundColor(Color.WHITE);
+
+        LinearLayout layout = new LinearLayout(this);
+        layout.setOrientation(LinearLayout.VERTICAL);
+        layout.setLayoutParams(new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+        ));
+
+        TextView bpText = new TextView(this);
+        bpText.setText("BP: " + systolic + "/" + diastolic + " mmHg");
+        bpText.setTextSize(18);
+        bpText.setTextColor(Color.BLACK);
+        bpText.setGravity(Gravity.CENTER);
+
+        TextView statusText = new TextView(this);
+        statusText.setText("Status: " + getStatus(systolic, diastolic));
+        statusText.setTextSize(16);
+        statusText.setTextColor(Color.GRAY);
+
+        layout.addView(bpText);
+        layout.addView(statusText);
+        cardView.addView(layout);
+        historyContainer.addView(cardView);
+    }
+
+    private String getStatus(int systolic, int diastolic) {
+        if (systolic < 90 || diastolic < 60) return "Low BP";
+        if (systolic > 140 || diastolic > 90) return "High BP";
+        return "Normal";
     }
 }
