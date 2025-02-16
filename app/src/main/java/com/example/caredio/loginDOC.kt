@@ -56,7 +56,7 @@ class LoginDOC : AppCompatActivity() {
                                     } else {
                                         // User is not a patient (presumably a doctor)
                                         Toast.makeText(this, "Login Successful!", Toast.LENGTH_SHORT).show()
-                                        startActivity(Intent(this, HomeActivity::class.java))
+                                        startActivity(Intent(this, HomeDoc::class.java))
                                         finish()
                                     }
                                 }
