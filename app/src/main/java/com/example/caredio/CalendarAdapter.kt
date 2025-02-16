@@ -25,9 +25,9 @@ class CalendarAdapter(private val days: List<String>, private val onItemClick: (
     override fun onBindViewHolder(holder: CalendarViewHolder, position: Int) {
         holder.textView.text = days[position]
 
-        // Gestion de la couleur quand un jour est sélectionné
-        if (selectedPosition == position) {
-            holder.textView.setBackgroundResource(R.drawable.selected_day_background) // Fond pour le jour sélectionné
+        val adapterPosition = holder.adapterPosition
+        if (adapterPosition == selectedPosition) {
+            holder.textView.setBackgroundResource(R.drawable.selected_day_background)
             holder.textView.setTextColor(Color.WHITE)
         } else {
             holder.textView.setBackgroundResource(android.R.color.transparent)
@@ -36,12 +36,13 @@ class CalendarAdapter(private val days: List<String>, private val onItemClick: (
 
         holder.itemView.setOnClickListener {
             val previousPosition = selectedPosition
-            selectedPosition = position
+            selectedPosition = holder.adapterPosition
             notifyItemChanged(previousPosition)
             notifyItemChanged(selectedPosition)
-            onItemClick(days[position])
+            onItemClick(days[selectedPosition])
         }
     }
+
 
     override fun getItemCount() = days.size
 }
