@@ -111,6 +111,34 @@
                 app:layout_constraintVertical_bias="0.05" />
 
             <EditText
+                android:id="@+id/editTextAdress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="15"
+                android:hint="Adress"
+                android:inputType="phone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.487"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/editTextPhone"
+                app:layout_constraintVertical_bias="0.05" />
+
+            <EditText
+                android:id="@+id/editTextGender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="15"
+                android:hint="Gender"
+                android:inputType="phone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.475"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/editTextAdress"
+                app:layout_constraintVertical_bias="0.05" />
+
+            <EditText
                 android:id="@+id/editTextTextPassword"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -119,9 +147,10 @@
                 android:inputType="textPassword"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.487"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextPhone"
-                app:layout_constraintVertical_bias="0.05" />
+                app:layout_constraintTop_toBottomOf="@id/editTextGender"
+                app:layout_constraintVertical_bias="0.055" />
 
             <EditText
                 android:id="@+id/editTextTextPassword2"

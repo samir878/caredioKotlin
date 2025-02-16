@@ -13,10 +13,25 @@
         android:theme="@style/Theme.Caredio"
         tools:targetApi="31">
         <activity
+            android:name=".HeartDiago"
+            android:exported="false" />
+        <activity
+            android:name=".HeartADD"
+            android:exported="false" />
+        <activity
+            android:name=".BloodSuDiagno"
+            android:exported="false" />
+        <activity
+            android:name=".BloodSugarADD"
+            android:exported="false" />
+        <activity
             android:name=".PoidsDiagno"
             android:exported="false" />
         <activity
             android:name=".Poids"
+            android:exported="false" />
+        <activity
+            android:name=".activityMyAcount"
             android:exported="false" />
         <activity
             android:name=".DiagoBloodSu"

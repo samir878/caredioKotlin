@@ -18,17 +18,17 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
-public class PoidsDiagno extends AppCompatActivity {
+public class HeartDiago extends AppCompatActivity {
 
     private FirebaseFirestore db;
     private LinearLayout historyContainer;
-    private static final String TAG = "PoidsDiagno";
+    private static final String TAG = "HeartDiagno";
     private String patientId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_poids_diagno);
+        setContentView(R.layout.activity_heart_diago);
 
         historyContainer = findViewById(R.id.historyContainer);
         db = FirebaseFirestore.getInstance();
@@ -45,7 +45,7 @@ public class PoidsDiagno extends AppCompatActivity {
 
         // Set click listener for Doctor image
         diagoButton.setOnClickListener(view -> {
-            Intent intent = new Intent(this, Poids.class);
+            Intent intent = new Intent(this, HeartADD.class);
             startActivity(intent);
         });
 
@@ -60,21 +60,21 @@ public class PoidsDiagno extends AppCompatActivity {
         // Fetch blood pressure records for the patient
         db.collection("Patients")
                 .document(patientId)
-                .collection("Weight")
+                .collection("Heart")
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     if (queryDocumentSnapshots.isEmpty()) {
-                        Toast.makeText(this, "No Weight records found!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "No heart records found!", Toast.LENGTH_SHORT).show();
                         return;
                     }
 
                     // Loop through each blood pressure record
                     for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
-                        Long systolicValue = document.getLong("weight");
+                        Long heartValue = document.getLong("heart");
 
 
-                        if (systolicValue != null ) {
-                            int weight = systolicValue.intValue();
+                        if (heartValue != null ) {
+                            int weight = heartValue.intValue();
 
                             generateHistoryCard(weight);
                         } else {
@@ -88,7 +88,7 @@ public class PoidsDiagno extends AppCompatActivity {
                 });
     }
 
-    private void generateHistoryCard(int weight) {
+    private void generateHistoryCard(int heart) {
         CardView cardView = new CardView(this);
         LinearLayout.LayoutParams cardParams = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
@@ -109,13 +109,13 @@ public class PoidsDiagno extends AppCompatActivity {
         ));
 
         TextView bpText = new TextView(this);
-        bpText.setText("weight: " + weight + " KG");
+        bpText.setText("Heart: " + heart + " BPM");
         bpText.setTextSize(18);
         bpText.setTextColor(Color.BLACK);
         bpText.setGravity(Gravity.CENTER);
 
         TextView statusText = new TextView(this);
-        statusText.setText("Status: " + getStatus(weight));
+        statusText.setText("Status: " + getStatus(heart));
         statusText.setTextSize(16);
         statusText.setTextColor(Color.GRAY);
 
@@ -125,9 +125,9 @@ public class PoidsDiagno extends AppCompatActivity {
         historyContainer.addView(cardView);
     }
 
-    private String getStatus(int weight) {
-        if (weight < 50 ) return "Low weight";
-        if (weight > 110 ) return "High weight";
+    private String getStatus(int heart) {
+        if (heart < 60 ) return "Low heart Rate";
+        if (heart > 100 ) return "High heart Rate";
         return "Normal";
     }
 }

@@ -20,6 +20,8 @@ class SignUp : AppCompatActivity() {
     private var emailET: EditText? = null
     private var dobET: EditText? = null
     private var phoneET: EditText? = null
+    private var adressET: EditText? = null
+    private var genderET: EditText? = null
     private var passwordET: EditText? = null
     private var confirmPasswordET: EditText? = null
     private lateinit var signUpBtn: Button
@@ -39,6 +41,8 @@ class SignUp : AppCompatActivity() {
         emailET = findViewById<EditText>(R.id.editTextTextEmailAddress2)
         dobET = findViewById<EditText>(R.id.editTextDate)
         phoneET = findViewById<EditText>(R.id.editTextPhone)
+        adressET = findViewById<EditText>(R.id.editTextAdress)
+        genderET = findViewById<EditText>(R.id.editTextGender)
         passwordET = findViewById<EditText>(R.id.editTextTextPassword)
         confirmPasswordET = findViewById<EditText>(R.id.editTextTextPassword2)
         signUpBtn = findViewById(R.id.button3)
@@ -61,6 +65,8 @@ class SignUp : AppCompatActivity() {
         val email = emailET!!.text.toString().trim { it <= ' ' }
         val dob = dobET!!.text.toString().trim { it <= ' ' }
         val phone = phoneET!!.text.toString().trim { it <= ' ' }
+        val adress = phoneET!!.text.toString().trim { it <= ' ' }
+        val gender = phoneET!!.text.toString().trim { it <= ' ' }
         val role="patient"
         val password = passwordET!!.text.toString().trim { it <= ' ' }
         val confirmPassword = confirmPasswordET!!.text.toString().trim { it <= ' '
@@ -69,7 +75,7 @@ class SignUp : AppCompatActivity() {
 
         // Validate inputs
         if (TextUtils.isEmpty(name) || TextUtils.isEmpty(email) || TextUtils.isEmpty(dob) ||
-            TextUtils.isEmpty(phone) || TextUtils.isEmpty(password) || TextUtils.isEmpty(
+            TextUtils.isEmpty(phone) ||TextUtils.isEmpty(adress)||TextUtils.isEmpty(gender)|| TextUtils.isEmpty(password) || TextUtils.isEmpty(
                 confirmPassword
             )
         ) {
@@ -99,6 +105,8 @@ class SignUp : AppCompatActivity() {
                     patient["email"] = email
                     patient["dob"] = dob
                     patient["phone"] = phone
+                    patient["adress"] = adress
+                    patient["gender"] = gender
                     patient["role"] = role
 
                     // Store in Firestore

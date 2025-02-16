@@ -27,6 +27,7 @@ public class BloodPressureActivity extends AppCompatActivity {
     private TextView statusText;
     private TextView statusText1;
     private TextView statusText2;
+    private TextView statusText3;
     private Button saveButton;
 
     private static final String TAG = "BloodPressureActivity";
@@ -46,6 +47,7 @@ public class BloodPressureActivity extends AppCompatActivity {
         statusText = findViewById(R.id.textView29); // Blood pressure status
         statusText1 = findViewById(R.id.textView30); // Blood pressure status
         statusText2 = findViewById(R.id.textView31); // Blood pressure status
+        statusText3 = findViewById(R.id.textView32); // Blood pressure status
         saveButton = findViewById(R.id.button10); // Save button
 
         // Save data when button is clicked
@@ -84,6 +86,8 @@ public class BloodPressureActivity extends AppCompatActivity {
 
         String status2 = getStatus2(systolic, diastolic);
         statusText2.setText("Diastolic: " + status2);
+        String status3 = getStatus3(systolic, diastolic);
+        statusText3.setText( status3);
 
         // Prepare data for Firebase
         Map<String, Object> bloodPressureData = new HashMap<>();
@@ -122,5 +126,11 @@ public class BloodPressureActivity extends AppCompatActivity {
         if (systolic < 90 || diastolic < 60) return "Lower Then 60";
         if (systolic > 140 || diastolic > 90) return "Higher Then 90";
         return "Normal";
+    }
+
+    private String getStatus3(int systolic, int diastolic) {
+        if (systolic < 90 || diastolic < 60) return "Your Blood Pressure is below the normal";
+        if (systolic > 140 || diastolic > 90) return "Your Blood Pressure is Higher the normal";
+        return "Your Blood Pressure is normal";
     }
 }
