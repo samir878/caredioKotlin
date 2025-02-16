@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DiagoBloodSu">
+    tools:context=".PoidsDiagno">
 
     <!--<com.github.mikephil.charting.charts.BarChart
         android:id="@+id/barChart"
@@ -46,7 +46,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="31dp"
                 android:layout_marginBottom="100dp"
-                android:text="Blood pressure"
+                android:text="Weight"
                 android:textColor="#968484"
                 android:textSize="24sp"
                 android:textStyle="bold"

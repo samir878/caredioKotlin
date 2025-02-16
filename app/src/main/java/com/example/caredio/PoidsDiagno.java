@@ -19,17 +19,17 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-public class DiagoBloodSu extends AppCompatActivity {
+public class PoidsDiagno extends AppCompatActivity {
 
     private FirebaseFirestore db;
     private LinearLayout historyContainer;
-    private static final String TAG = "DiagoBloodSu";
+    private static final String TAG = "PoidsDiagno";
     private String patientId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_diago_blood_su);
+        setContentView(R.layout.activity_poids_diagno);
 
         historyContainer = findViewById(R.id.historyContainer);
         db = FirebaseFirestore.getInstance();
@@ -44,9 +44,9 @@ public class DiagoBloodSu extends AppCompatActivity {
         fetchBloodPressureData();
         Button diagoButton = findViewById(R.id.button9);
 
-       // Set click listener for Doctor image
+        // Set click listener for Doctor image
         diagoButton.setOnClickListener(view -> {
-            Intent intent = new Intent(this, BloodPressureActivity.class);
+            Intent intent = new Intent(this, Poids.class);
             startActivity(intent);
         });
 
@@ -61,23 +61,23 @@ public class DiagoBloodSu extends AppCompatActivity {
         // Fetch blood pressure records for the patient
         db.collection("Patients")
                 .document(patientId)
-                .collection("Blood")
+                .collection("Weight")
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     if (queryDocumentSnapshots.isEmpty()) {
-                        Toast.makeText(this, "No blood pressure records found!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "No Weight records found!", Toast.LENGTH_SHORT).show();
                         return;
                     }
 
                     // Loop through each blood pressure record
                     for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
-                        Long systolicValue = document.getLong("systolic");
-                        Long diastolicValue = document.getLong("diastolic");
+                        Long systolicValue = document.getLong("weight");
 
-                        if (systolicValue != null && diastolicValue != null) {
-                            int systolic = systolicValue.intValue();
-                            int diastolic = diastolicValue.intValue();
-                            generateHistoryCard(systolic, diastolic);
+
+                        if (systolicValue != null ) {
+                            int weight = systolicValue.intValue();
+
+                            generateHistoryCard(weight);
                         } else {
                             Log.e(TAG, "Invalid data format in document: " + document.getId());
                         }
@@ -89,7 +89,7 @@ public class DiagoBloodSu extends AppCompatActivity {
                 });
     }
 
-    private void generateHistoryCard(int systolic, int diastolic) {
+    private void generateHistoryCard(int weight) {
         CardView cardView = new CardView(this);
         LinearLayout.LayoutParams cardParams = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
@@ -110,13 +110,13 @@ public class DiagoBloodSu extends AppCompatActivity {
         ));
 
         TextView bpText = new TextView(this);
-        bpText.setText("BP: " + systolic + "/" + diastolic + " mmHg");
+        bpText.setText("weight: " + weight + " KG");
         bpText.setTextSize(18);
         bpText.setTextColor(Color.BLACK);
         bpText.setGravity(Gravity.CENTER);
 
         TextView statusText = new TextView(this);
-        statusText.setText("Status: " + getStatus(systolic, diastolic));
+        statusText.setText("Status: " + getStatus(weight));
         statusText.setTextSize(16);
         statusText.setTextColor(Color.GRAY);
 
@@ -126,9 +126,9 @@ public class DiagoBloodSu extends AppCompatActivity {
         historyContainer.addView(cardView);
     }
 
-    private String getStatus(int systolic, int diastolic) {
-        if (systolic < 90 || diastolic < 60) return "Low BP";
-        if (systolic > 140 || diastolic > 90) return "High BP";
+    private String getStatus(int weight) {
+        if (weight < 50 ) return "Low weight";
+        if (weight > 110 ) return "High weight";
         return "Normal";
     }
 }
