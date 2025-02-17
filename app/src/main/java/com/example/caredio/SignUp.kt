@@ -65,8 +65,8 @@ class SignUp : AppCompatActivity() {
         val email = emailET!!.text.toString().trim { it <= ' ' }
         val dob = dobET!!.text.toString().trim { it <= ' ' }
         val phone = phoneET!!.text.toString().trim { it <= ' ' }
-        val adress = phoneET!!.text.toString().trim { it <= ' ' }
-        val gender = phoneET!!.text.toString().trim { it <= ' ' }
+        val adress = adressET!!.text.toString().trim { it <= ' ' }
+        val gender = genderET!!.text.toString().trim { it <= ' ' }
         val role="patient"
         val password = passwordET!!.text.toString().trim { it <= ' ' }
         val confirmPassword = confirmPasswordET!!.text.toString().trim { it <= ' '
