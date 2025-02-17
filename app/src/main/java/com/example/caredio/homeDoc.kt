@@ -1,4 +1,5 @@
 package com.example.caredio
+
 import AppointmentAdapter
 import android.os.Bundle
 import android.widget.Toast
@@ -9,12 +10,14 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.firestore.FirebaseFirestore
 
 class HomeDoc : AppCompatActivity() {
 
     private lateinit var appointmentsRecyclerView: RecyclerView
     private lateinit var appointmentAdapter: AppointmentAdapter
     private val appointmentList = mutableListOf<Appointment>()
+    private val db = FirebaseFirestore.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,14 +48,29 @@ class HomeDoc : AppCompatActivity() {
         // Initialiser le RecyclerView pour les rendez-vous 🏥
         appointmentsRecyclerView = findViewById(R.id.appointmentsRecyclerView)
         appointmentsRecyclerView.layoutManager = LinearLayoutManager(this)
-
-        // Ajouter des rendez-vous avec l'heure 🕒
-        appointmentList.add(Appointment("Taylor Swift", 35, R.drawable.taylor_swift, "8:30 AM"))
-        appointmentList.add(Appointment("Bruno Mars", 38, R.drawable.bruno_mars, "10:00 AM"))
-        appointmentList.add(Appointment("Selena Gomez", 31, R.drawable.selena_gomez, "9:30 AM"))
-
-        // Configurer l'Adapter pour afficher les rendez-vous 📅
         appointmentAdapter = AppointmentAdapter(appointmentList)
         appointmentsRecyclerView.adapter = appointmentAdapter
+
+        // Récupérer les rendez-vous depuis Firestore 🔥
+        fetchAppointments()
+    }
+
+    private fun fetchAppointments() {
+        db.collection("RendezVous")
+            .get()
+            .addOnSuccessListener { documents ->
+                appointmentList.clear()
+                for (document in documents) {
+                    val firstName = document.getString("firstName") ?: ""
+                    val lastName = document.getString("lastName") ?: ""
+                    val date = document.getString("date") ?: ""
+                    val time = document.getString("time") ?: ""
+                    appointmentList.add(Appointment("$firstName $lastName", 0, R.drawable.patient, "$date - $time"))
+                }
+                appointmentAdapter.notifyDataSetChanged()
+            }
+            .addOnFailureListener { exception ->
+                Toast.makeText(this, "Erreur lors du chargement des rendez-vous", Toast.LENGTH_SHORT).show()
+            }
     }
 }

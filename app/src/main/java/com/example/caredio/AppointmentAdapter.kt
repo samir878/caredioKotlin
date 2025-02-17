@@ -15,7 +15,7 @@ class AppointmentAdapter(private val appointments: List<Appointment>) :
         val timeTextView: TextView = view.findViewById(R.id.timeTextView)
         val profileImageView: ImageView = view.findViewById(R.id.profileImageView)
         val nameTextView: TextView = view.findViewById(R.id.nameTextView)
-        val ageTextView: TextView = view.findViewById(R.id.ageTextView)
+        //val ageTextView: TextView = view.findViewById(R.id.ageTextView)
         val medicalRecordsTextView: TextView = view.findViewById(R.id.medicalRecordsTextView)
     }
 
@@ -29,7 +29,7 @@ class AppointmentAdapter(private val appointments: List<Appointment>) :
         val appointment = appointments[position]
         holder.timeTextView.text = appointment.time
         holder.nameTextView.text = appointment.name
-        holder.ageTextView.text = "${appointment.age} yo"
+        //holder.ageTextView.text = "${appointment.age} yo"
         holder.profileImageView.setImageResource(appointment.imageResId)
 
         // Ajout du texte "medical records >"

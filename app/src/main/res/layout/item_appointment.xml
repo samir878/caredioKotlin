@@ -85,13 +85,13 @@
                     android:textSize="16sp"
                     android:textStyle="bold"/>
 
-                <TextView
-                    android:id="@+id/ageTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Age"
-                    android:textSize="14sp"
-                    android:textColor="@android:color/darker_gray"/>
+<!--                <TextView-->
+<!--                    android:id="@+id/ageTextView"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Age"-->
+<!--                    android:textSize="14sp"-->
+<!--                    android:textColor="@android:color/darker_gray"/>-->
             </LinearLayout>
 
             <!-- Bouton "medical records >" -->
