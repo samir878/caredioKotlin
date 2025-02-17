@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#FFF5F5"
     android:padding="16dp"
-    tools:context=".activityMyAcount">
+    tools:context=".MyprofileDoc">
     <!-- Header Section -->
 
     <LinearLayout
@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="8dp"
-            android:text="Taylor Swift"
+            android:text="Samir Messaoudi"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -59,7 +59,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="4dp"
-            android:text="taylorswift@gmail.com"
+            android:text="samirmessaoudi04@gmail.com"
             android:textColor="#888888"
             android:textSize="14sp" />
 
@@ -176,7 +176,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="end"
-                android:text="taylorswift@gmail.com"
+                android:text="samirmessaoudi04@gmail.com"
                 android:textSize="16sp" />
         </LinearLayout>
 
@@ -211,7 +211,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="end"
-                android:text="1200 Laurel Lane, California"
+                android:text="1200 Laurel Lane, paris"
                 android:textSize="16sp" />
         </LinearLayout>
     </LinearLayout>
@@ -291,7 +291,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="end"
-                android:text="Female"
+                android:text="Male"
                 android:textSize="16sp" />
         </LinearLayout>
 
@@ -326,7 +326,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="end"
-                android:text="13/12/1989"
+                android:text="16/04/2004"
                 android:textSize="16sp" />
         </LinearLayout>
 

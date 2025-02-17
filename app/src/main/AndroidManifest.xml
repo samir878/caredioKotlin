@@ -13,7 +13,31 @@
         android:theme="@style/Theme.Caredio"
         tools:targetApi="31">
         <activity
+            android:name=".BloodPruDoc"
+            android:exported="false" />
+        <activity
+            android:name=".PoidsDiagnoDoc"
+            android:exported="false" />
+        <activity
+            android:name=".BloodSuDiagnDoc"
+            android:exported="false" />
+        <activity
+            android:name=".HeartDiagnoDoc"
+            android:exported="false" />
+        <activity
+            android:name=".ChooseType"
+            android:exported="false" />
+        <activity
+            android:name=".ListPatient"
+            android:exported="false" />
+        <activity
+            android:name=".MyprofileDoc"
+            android:exported="false" />
+        <activity
             android:name=".HeartDiago"
+            android:exported="false" />
+        <activity
+            android:name=".AddRendezVous"
             android:exported="false" />
         <activity
             android:name=".HeartADD"

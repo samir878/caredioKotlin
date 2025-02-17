@@ -82,7 +82,7 @@ public class HeartADD extends AppCompatActivity {
 
 
         String status1 = getStatus1(heart);
-        statusText1.setText("weight: " + status1);
+        statusText1.setText("Heart Rate: " + status1);
 
         String status2 = getStatus2(heart);
         statusText2.setText( status2);

@@ -1,7 +1,9 @@
 package com.example.caredio
 
 import AppointmentAdapter
+import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -30,6 +32,25 @@ class HomeDoc : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        val home: ImageView = findViewById(R.id.imageView9)
+        val patientli: ImageView = findViewById(R.id.imageView13)
+        val profil: ImageView = findViewById(R.id.imageView14)
+
+        // Set click listener for Doctor image
+        home.setOnClickListener {
+            val intent = Intent(this, HomeDoc::class.java)
+            startActivity(intent)
+        }
+        profil.setOnClickListener {
+            val intent = Intent(this, MyprofileDoc::class.java)
+            startActivity(intent)
+        }
+
+        patientli.setOnClickListener {
+            val intent = Intent(this, ListPatient::class.java)
+            startActivity(intent)
+        }
+
 
         // Initialiser le calendrier 📅
         val daysOfMonth = listOf(

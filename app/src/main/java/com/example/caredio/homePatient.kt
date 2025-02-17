@@ -25,6 +25,7 @@ class HomePatient : AppCompatActivity() {
         val DiagoButtonw: Button = findViewById(R.id.button6)
         val DiagoButtonSU: Button = findViewById(R.id.button7)
         val DiagoButtonH: Button = findViewById(R.id.button4)
+        val DiagoRend: Button = findViewById(R.id.button2)
 
         // Set click listener for Doctor image
         DiagoButton.setOnClickListener {
@@ -44,7 +45,10 @@ class HomePatient : AppCompatActivity() {
             val intent = Intent(this, HeartDiago::class.java)
             startActivity(intent)
         }
-
+        DiagoRend.setOnClickListener {
+            val intent = Intent(this, AddRendezVous::class.java)
+            startActivity(intent)
+        }
         val myprofile: ImageView = findViewById(R.id.imageView8)
 
         // Set click listener for Doctor image
