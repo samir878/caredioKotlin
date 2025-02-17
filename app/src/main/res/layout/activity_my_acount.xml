@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFF5F5"
-    android:padding="16dp">
+    android:padding="16dp"
+    tools:context=".activityMyAcount">
     <!-- Header Section -->
+
     <LinearLayout
         android:id="@+id/headerContainer"
         android:layout_width="0dp"
-        android:layout_height="260dp"
+        android:layout_height="240dp"
         android:background="@drawable/header_border"
         android:orientation="vertical"
         android:padding="16dp"
@@ -18,38 +21,24 @@
         app:layout_constraintTop_toTopOf="parent">
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginEnd="30dp"
-                android:src="@drawable/fleche" />
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="My account"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-        </LinearLayout>
-
         <!-- Image de profil -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="My account"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
         <ImageView
             android:id="@+id/profileImage"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_gravity="center"
+            android:layout_marginTop="12sp"
             android:background="@drawable/circle_background"
             android:scaleType="centerCrop"
-            android:src="@drawable/profilimg" />
+            android:src="@drawable/user" />
 
         <!-- Nom de l'utilisateur -->
         <TextView
@@ -74,15 +63,6 @@
             android:textSize="14sp" />
 
         <!-- Bouton "Edit profile" -->
-        <Button
-            android:id="@+id/editProfileButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:backgroundTint="#CCCCCC"
-            android:text="Edit profile"
-            android:textColor="@color/white" />
     </LinearLayout>
 
     <!-- Contact Details Section -->
@@ -155,6 +135,7 @@
 
             <!-- Valeur (à droite) -->
             <TextView
+                android:id="@+id/TextPhone"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -189,6 +170,7 @@
 
             <!-- Valeur (à droite) -->
             <TextView
+                android:id="@+id/Textemail"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -223,6 +205,7 @@
 
             <!-- Valeur (à droite) -->
             <TextView
+                android:id="@+id/TextAdress"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -302,6 +285,7 @@
 
             <!-- Valeur (à droite) -->
             <TextView
+                android:id="@+id/TextGender"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -336,6 +320,7 @@
 
             <!-- Valeur (à droite) -->
             <TextView
+                android:id="@+id/DateBearth"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -345,107 +330,8 @@
         </LinearLayout>
 
         <!-- Blood group -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:orientation="horizontal">
-
-            <!-- Label (à gauche) -->
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Blood group"
-                android:textSize="16sp" />
-
-            <!-- Deux-points (au milieu) -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:text=":"
-                android:textSize="16sp" />
-
-            <!-- Valeur (à droite) -->
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="end"
-                android:text="O+"
-                android:textSize="16sp" />
-        </LinearLayout>
 
         <!-- Height -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:orientation="horizontal">
-
-            <!-- Label (à gauche) -->
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Height"
-                android:textSize="16sp" />
-
-            <!-- Deux-points (au milieu) -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:text=":"
-                android:textSize="16sp" />
-
-            <!-- Valeur (à droite) -->
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="end"
-                android:text="180cm"
-                android:textSize="16sp" />
-        </LinearLayout>
     </LinearLayout>
     <!-- Bottom Navigation -->
-    <LinearLayout
-        android:id="@+id/bottomNavigation"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:padding="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <ImageView
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:src="@drawable/ic_home" />
-
-        <ImageView
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="32dp"
-            android:src="@drawable/addbu" />
-
-        <ImageView
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_marginStart="32dp"
-            android:src="@drawable/ic_calendar" />
-
-        <ImageView
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_marginStart="32dp"
-            android:src="@drawable/ic_profile" />
-    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
